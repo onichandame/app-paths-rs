@@ -3,6 +3,9 @@ pub enum Error {
     #[cfg(target_os = "android")]
     #[error(transparent)]
     JniError(#[from] jni::errors::Error),
+    #[cfg(target_os = "windows")]
+    #[error(transparent)]
+    WindowsError(#[from] windows::core::Error),
     #[error(transparent)]
     IoError(#[from] std::io::Error),
 }
