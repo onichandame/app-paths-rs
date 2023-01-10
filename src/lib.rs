@@ -10,10 +10,11 @@ mod fallback;
 #[cfg(target_os = "windows")]
 mod windows;
 
-/// Get the path of the directory where all the app data should reside.
+/// Get the path of the directory where all the app data should reside. On
+/// getting this path, the directory is guaranteed to exist.
 ///
-/// This path generally lives as long as the current app installation, meaning
-/// that this path may be removed if the app is un-installed
+/// This path generally lives as long as the app, meaning that this path
+/// may be removed if the app is un-installed.
 pub fn get_data_dir() -> Result<PathBuf> {
     let dir = {
         #[cfg(target_os = "android")]
